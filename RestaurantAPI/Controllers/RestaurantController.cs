@@ -31,22 +31,12 @@ namespace RestaurantAPI.Controllers
         {
             var restaurantDto = restaurantService.GetById(id);
 
-            if (restaurantDto is null)
-            {
-                return NotFound();
-            }
-
             return Ok(restaurantDto);
         }
 
         [HttpPost]
         public ActionResult CreateRestaurant([FromBody] CreateRestaurantDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var id = restaurantService.Create(dto);
 
             return Created($"/api/restaurant/{id}", null);
@@ -55,21 +45,17 @@ namespace RestaurantAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult DeleteRestaurant([FromRoute] int id)
         {
-            return restaurantService.Delete(id) == false ? NotFound() 
-                : NoContent();
+            restaurantService.Delete(id);
+
+            return NoContent();
         }
 
         [HttpPut("{id}")]
         public ActionResult UpdateRestaurant([FromRoute] int id, [FromBody] UpdateRestaurantDto dto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            restaurantService.Update(dto, id);
 
-            var isUpdated = restaurantService.Update(dto, id);
-
-            return isUpdated ? Ok() : NotFound();
+            return Ok();
         }
     }
 }
