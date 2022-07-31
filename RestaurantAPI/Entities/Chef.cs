@@ -1,0 +1,13 @@
+﻿namespace RestaurantAPI.Entities
+{
+    public class Chef
+    {
+        public int Id { get; set; }
+        public string FullName { get; set; }
+        public int Age { get; set; }
+        public string Email { get; set; }
+        public string ContactNumber { get; set; }
+        public int Rank { get; set; }
+        public Restaurant Restaurant { get; set; }
+    }
+}
