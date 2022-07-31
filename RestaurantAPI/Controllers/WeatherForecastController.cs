@@ -8,7 +8,7 @@ namespace RestaurantAPI.Controllers
     {
         private readonly ILogger<WeatherForecastController> logger;
         private readonly IWeatherForecastService service;
-
+        
         public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherForecastService service)
         {
             this.logger = logger;
