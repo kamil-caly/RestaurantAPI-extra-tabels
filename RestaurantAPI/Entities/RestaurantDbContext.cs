@@ -37,6 +37,12 @@ namespace RestaurantAPI.Entities
                 .IsRequired()
                 .HasMaxLength(50);
             });
+
+            modelBuilder.Entity<Chef>(ch =>
+            {
+                ch.Property(c => c.FullName).IsRequired();
+            });
+                
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
