@@ -1,4 +1,5 @@
 using RestaurantAPI;
+using RestaurantAPI.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +10,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IWeatherForecastService, WeatherForecastService>(); // przyjmuje 2 typy generyczne
+builder.Services.AddDbContext<RestaurantDbContext>();
+builder.Services.AddScoped<RestaurantSeeder>();
+
+
 
 var app = builder.Build(); /// kazda metoda wywolywana na app to middleware
+
+var scope = app.Services.CreateScope();
+
+/// start seed restaurants
+var seeder = scope.ServiceProvider.GetRequiredService<RestaurantSeeder>();
+seeder.Seed();
+
 
 if (app.Environment.IsDevelopment())
 {

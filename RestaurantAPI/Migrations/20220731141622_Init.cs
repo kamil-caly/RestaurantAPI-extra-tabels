@@ -44,7 +44,8 @@ namespace RestaurantAPI.Migrations
                 name: "Restaurants",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -80,17 +81,17 @@ namespace RestaurantAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    RestaurantId = table.Column<int>(type: "int", nullable: false),
-                    RestaurantId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    RestaurantId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Dishes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Dishes_Restaurants_RestaurantId1",
-                        column: x => x.RestaurantId1,
+                        name: "FK_Dishes_Restaurants_RestaurantId",
+                        column: x => x.RestaurantId,
                         principalTable: "Restaurants",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,9 +116,9 @@ namespace RestaurantAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Dishes_RestaurantId1",
+                name: "IX_Dishes_RestaurantId",
                 table: "Dishes",
-                column: "RestaurantId1");
+                column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_DishId",
