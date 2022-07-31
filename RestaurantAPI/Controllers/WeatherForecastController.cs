@@ -15,18 +15,16 @@ namespace RestaurantAPI.Controllers
             this.service = service;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpPost("generate")]
+        public ActionResult<IEnumerable<WeatherForecast>> Get([FromQuery] int result, 
+            [FromBody]TemperatureInfo info)
         {
-            var result = service.Get();
-            return result;
-        }
+            if (result < 1 || info.MaxValue <= info.MinValue)
+            {
+                return BadRequest();
+            }
 
-        [HttpGet("currentDay/{max}")]
-        public IEnumerable<WeatherForecast> Get2([FromQuery]int take, [FromRoute] int max)
-        {
-            var result = service.Get();
-            return result;
+            return Ok(service.Get(result, info.MinValue, info.MaxValue));
         }
 
         [HttpPost]

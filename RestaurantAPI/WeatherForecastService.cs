@@ -2,12 +2,12 @@
 {
     public class WeatherForecastService : IWeatherForecastService
     {
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Get(int result, int min, int max)
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            return Enumerable.Range(1, result).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
+                TemperatureC = Random.Shared.Next(min, max),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
