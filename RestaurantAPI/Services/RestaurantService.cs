@@ -18,11 +18,13 @@ namespace RestaurantAPI.Services
     {
         private readonly RestaurantDbContext dbContext;
         private readonly IMapper mapper;
+        private readonly ILogger<RestaurantService> logger;
 
-        public RestaurantService(RestaurantDbContext dbContext, IMapper mapper)
+        public RestaurantService(RestaurantDbContext dbContext, IMapper mapper, ILogger<RestaurantService> logger)
         {
             this.dbContext = dbContext;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         public RestaurantDto GetById(int id)
@@ -65,6 +67,8 @@ namespace RestaurantAPI.Services
 
         public bool Delete(int id)
         {
+            logger.LogError($"Restaurant with id: {id} Delete action invoked");
+
             var restaurant = dbContext
                 .Restaurants
                 .FirstOrDefault(r => r.Id == id);
