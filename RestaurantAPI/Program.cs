@@ -12,6 +12,8 @@ using RestaurantAPI.Models.Validators;
 using FluentValidation.AspNetCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using RestaurantAPI.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,7 +45,12 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("HasNationality", builder
         => builder.RequireClaim("Nationality", "German", "Polish"));
+
+    options.AddPolicy("AtLeast20", builder
+        => builder.AddRequirements(new MinimumAgeRequirment(20)));
 });
+
+builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 builder.Services.AddControllers().AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
