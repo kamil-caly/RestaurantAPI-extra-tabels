@@ -13,5 +13,6 @@
         public string ChefFullName { get; set; }
         public int ChefRank { get; set; }
         public List<DishDto> Dishes { get; set; }
+
     }
 }
