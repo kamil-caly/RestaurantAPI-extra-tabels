@@ -23,6 +23,8 @@ namespace RestaurantAPI
                     { City = dto.City, PostalCode = dto.PostalCode, Street = dto.Street }))
                 .ForMember(m => m.Chef, c => c.MapFrom(dto => new Chef()
                     { FullName = dto.ChefFullName, Rank = dto.ChefRank }));
+
+            CreateMap<CreateDishDto, Dish>();
                 
         }
     }
