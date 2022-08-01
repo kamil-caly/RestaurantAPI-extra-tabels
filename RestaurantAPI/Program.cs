@@ -5,6 +5,7 @@ using RestaurantAPI.Services;
 using System.Reflection;
 using Microsoft.Extensions.Logging;
 using RestaurantAPI.Middleware;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IDishService, DishService>();
 builder.Services.AddScoped<IIngredientService, IngredientService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 /// Nlog: Setup Nlog for Dependecy Injection
 builder.Logging.ClearProviders();
