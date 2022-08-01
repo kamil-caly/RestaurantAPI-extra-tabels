@@ -6,12 +6,16 @@ using System.Reflection;
 using Microsoft.Extensions.Logging;
 using RestaurantAPI.Middleware;
 using Microsoft.AspNetCore.Identity;
+using FluentValidation;
+using RestaurantAPI.Models;
+using RestaurantAPI.Models.Validators;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -23,6 +27,7 @@ builder.Services.AddScoped<IDishService, DishService>();
 builder.Services.AddScoped<IIngredientService, IngredientService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 
 /// Nlog: Setup Nlog for Dependecy Injection
 builder.Logging.ClearProviders();
