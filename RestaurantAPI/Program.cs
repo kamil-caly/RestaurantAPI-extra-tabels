@@ -20,6 +20,7 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IDishService, DishService>();
 builder.Services.AddScoped<IIngredientService, IngredientService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 /// Nlog: Setup Nlog for Dependecy Injection
 builder.Logging.ClearProviders();
