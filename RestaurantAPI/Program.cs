@@ -25,6 +25,7 @@ builder.Logging.SetMinimumLevel(LogLevel.Trace);
 builder.Host.UseNLog();
 
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<RequestTimeMiddleware>();
 
 
 
@@ -47,6 +48,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+app.UseMiddleware<RequestTimeMiddleware>();
 
 app.UseHttpsRedirection(); /// zapytanie automatycznie przekierowane na adres http
 

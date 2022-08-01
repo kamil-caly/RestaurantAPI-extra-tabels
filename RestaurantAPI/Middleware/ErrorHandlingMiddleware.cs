@@ -1,10 +1,12 @@
 ﻿using RestaurantAPI.Exceptions;
+using System.Diagnostics;
 
 namespace RestaurantAPI.Middleware
 {
     public class ErrorHandlingMiddleware : IMiddleware
     {
         private readonly ILogger<ErrorHandlingMiddleware> logger;
+        
 
         public ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger)
         {
