@@ -38,6 +38,12 @@ builder.Services.AddAuthentication(option =>
     };
 });
 
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("HasNationality", builder
+        => builder.RequireClaim("Nationality", "German", "Polish"));
+});
 builder.Services.AddControllers().AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
