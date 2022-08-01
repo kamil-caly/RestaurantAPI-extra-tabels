@@ -86,8 +86,8 @@ app.UseAuthentication();
 
 app.UseHttpsRedirection(); /// zapytanie automatycznie przekierowane na adres http
 
-/// app.UseAuthorization(); ///
+app.UseAuthorization(); 
 
-app.MapControllers();
+app.MapControllers(); /// w net 5 app.UseEndpoints -> MapControllers();
 
 app.Run();
