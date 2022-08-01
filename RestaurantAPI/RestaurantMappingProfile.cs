@@ -25,6 +25,7 @@ namespace RestaurantAPI
                     { FullName = dto.ChefFullName, Rank = dto.ChefRank }));
 
             CreateMap<CreateDishDto, Dish>();
+            CreateMap<Ingredients, IngredientDto>();
                 
         }
     }
