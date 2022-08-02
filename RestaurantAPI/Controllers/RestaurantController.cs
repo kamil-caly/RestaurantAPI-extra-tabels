@@ -23,9 +23,9 @@ namespace RestaurantAPI.Controllers
 
         [HttpGet]
         [Authorize(Policy = "CreatedAtLeast2Restaurants")]
-        public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery] string searchPhrase)
+        public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery] RestaurantQuery query)
         { 
-            var restaurantsDtos = restaurantService.GetAll(searchPhrase);
+            var restaurantsDtos = restaurantService.GetAll(query);
 
             return Ok(restaurantsDtos);
         }
