@@ -15,7 +15,7 @@ namespace RestaurantAPI.Controllers
             var filePath = $"{rootPath}/PrivateFiles/{fileName}";
 
             var fileExist = System.IO.File.Exists(filePath);
-            if (fileExist)
+            if (!fileExist)
             {
                 return NotFound();
             }
