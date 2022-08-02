@@ -99,6 +99,7 @@ var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<RestaurantSeeder>();
 seeder.Seed();
 
+app.UseStaticFiles();
 app.UseCors("FrontEndClient");
 
 if (app.Environment.IsDevelopment())
