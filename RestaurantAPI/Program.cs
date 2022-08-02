@@ -48,10 +48,14 @@ builder.Services.AddAuthorization(options =>
 
     options.AddPolicy("AtLeast20", builder
         => builder.AddRequirements(new MinimumAgeRequirment(20)));
+
+    options.AddPolicy("CreatedAtLeast2Restaurants", builder
+        => builder.AddRequirements(new CreatedMultipleRestaurantsRequirment(2)));
 });
 
 builder.Services.AddScoped<IAuthorizationHandler, MinimumAgeRequirementHandler>();
 builder.Services.AddScoped<IAuthorizationHandler, ResourceOperationRequirementHandler>();
+builder.Services.AddScoped<IAuthorizationHandler, CreatedMultipleRestaurantsRequirmentHandler>();
 builder.Services.AddControllers().AddFluentValidation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
