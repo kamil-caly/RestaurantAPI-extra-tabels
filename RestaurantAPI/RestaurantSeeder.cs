@@ -1,4 +1,5 @@
-﻿using RestaurantAPI.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantAPI.Entities;
 
 namespace RestaurantAPI
 {
@@ -14,6 +15,12 @@ namespace RestaurantAPI
         {
             if (dbContext.Database.CanConnect())
             {
+                var pendingMigrations = dbContext.Database.GetPendingMigrations();
+                if (pendingMigrations != null && pendingMigrations.Any())
+                {
+                    dbContext.Database.Migrate();
+                }
+
                 if (!dbContext.Restaurants.Any())
                 {
                     dbContext.Restaurants.AddRange(GetRestaurant());
