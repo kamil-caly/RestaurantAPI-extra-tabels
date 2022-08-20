@@ -1,17 +1,13 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RestaurantAPI.Entities;
 using RestaurantAPI.Models;
 using RestaurantAPI.Services;
-using System.Security.Claims;
 
 namespace RestaurantAPI.Controllers
 {
     [Route("api/restaurant")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class RestaurantController : ControllerBase
     {
         private readonly IRestaurantService restaurantService;
@@ -23,6 +19,7 @@ namespace RestaurantAPI.Controllers
 
         [HttpGet]
         //[Authorize(Policy = "CreatedAtLeast2Restaurants")]
+        [AllowAnonymous]
         public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery] RestaurantQuery query)
         { 
             var restaurantsDtos = restaurantService.GetAll(query);

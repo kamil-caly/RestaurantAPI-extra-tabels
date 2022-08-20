@@ -130,3 +130,5 @@ app.UseAuthorization();
 app.MapControllers(); /// w net 5 app.UseEndpoints -> MapControllers();
 
 app.Run();
+
+public partial class Program { }
