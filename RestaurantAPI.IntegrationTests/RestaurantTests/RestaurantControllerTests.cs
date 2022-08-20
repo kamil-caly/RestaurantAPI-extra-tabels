@@ -37,7 +37,7 @@ namespace RestaurantAPI.IntegrationTests.RestaurantTests
                     });
                 });
 
-            client = this.factory.CreateClient();
+            this.client = this.factory.CreateClient();
         }
 
         private void SeedRestaurant(Restaurant restaurant)

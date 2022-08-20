@@ -30,8 +30,4 @@
     <ProjectReference Include="..\RestaurantAPI\RestaurantAPI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DishTests\" />
-  </ItemGroup>
-
 </Project>
