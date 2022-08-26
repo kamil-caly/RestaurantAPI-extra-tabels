@@ -91,7 +91,7 @@ namespace RestaurantAPI.IntegrationTests
                 .Returns("jwt");
 
             var loginDto = new LoginDto()
-            {
+            { 
                 Email = "test@test.com",
                 Password = "password123"
             };
