@@ -16,7 +16,7 @@ using RestaurantAPI.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args) //delete semicolon to CI tests
 
 // Add services to the container.
 var authenticationSettings = new AuthenticationSettings();
