@@ -91,7 +91,7 @@ namespace RestaurantAPI.IntegrationTests
                 .Returns("jwt");
 
             var loginDto = new LoginDto()
-            {
+            { 
                 Email = "test@test.com",
                 Password = "password123"
             };
@@ -104,7 +104,7 @@ namespace RestaurantAPI.IntegrationTests
 
             // assert
 
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
     }
 }
